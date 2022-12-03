@@ -1,13 +1,20 @@
-const { StylesProvider } = require("@material-ui/core");
+const {
+  StylesProvider,
+  createGenerateClassName,
+} = require("@material-ui/core");
 const { BrowserRouter, Switch, Route } = require("react-router-dom");
 import React from "react";
 import LandingPage from "../components/Landing";
 import Pricing from "../components/Pricing";
 
+const generateClassName = createGenerateClassName({
+  productionPrefix: "marketing",
+});
+
 const App = () => {
   return (
     <div>
-      <StylesProvider>
+      <StylesProvider generateClassName={generateClassName}>
         <BrowserRouter>
           <Switch>
             <Route exact path={"/"} children={<LandingPage />} />
