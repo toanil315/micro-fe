@@ -4,21 +4,27 @@ const {
 } = require("@material-ui/core");
 const { Router, Switch, Route } = require("react-router-dom");
 import React from "react";
-import LandingPage from "./components/Landing";
-import Pricing from "./components/Pricing";
+import SignIn from "./components/Signin";
+import SignUp from "./components/Signup";
 
 const generateClassName = createGenerateClassName({
-  productionPrefix: "marketing",
+  productionPrefix: "auth",
 });
 
-const App = ({ history }) => {
+const App = ({ history, onSignIn }) => {
   return (
     <div>
       <StylesProvider generateClassName={generateClassName}>
         <Router history={history}>
           <Switch>
-            <Route exact path={"/"} children={<LandingPage />} />
-            <Route exact path={"/pricing"} children={<Pricing />} />
+            <Route
+              path="/auth/signin"
+              children={<SignIn onSignIn={onSignIn} />}
+            />
+            <Route
+              path="/auth/signup"
+              children={<SignUp onSignIn={onSignIn} />}
+            />
           </Switch>
         </Router>
       </StylesProvider>
